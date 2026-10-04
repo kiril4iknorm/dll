@@ -15,6 +15,9 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
+      - name: Add BepInEx NuGet Feed
+        run: dotnet nuget add source https://nuget.bepinex.dev/v3/index.json --name BepInEx
+
       - name: Build Solution
         run: |
           dotnet build IdealMarketPrice.csproj -c Release
@@ -23,4 +26,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: IdealMarketPrice-DLL
-          path: bin/Release/netstandard2.1/IdealMarketPrice.dll
+          path: bin/Release/**/IdealMarketPrice.dll
